@@ -22,6 +22,11 @@ def select_model(args, device):
         model_path = os.path.join('model_zoo', 'team00_rfdn.pth')
         model = RFDN()
         model.load_state_dict(torch.load(model_path), strict=True)
+    elif model_id == 13:
+        # RFDN half precision
+        name, data_range = f"{model_id:02}_PRFDN", 255.0
+        model_path = os.path.join('model_zoo', 'PRFDN_28.992.pth')
+        model = torch.load(model_path)
     else:
         raise NotImplementedError(f"Model {model_id} is not implemented.")
 
