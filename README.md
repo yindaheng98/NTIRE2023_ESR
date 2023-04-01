@@ -1,3 +1,55 @@
+# SEU_CNII - 13
+
+## 1 Clone our repo
+
+`git clone [https://github.com/yindaheng98/NTIRE2023_ESR](https://github.com/yindaheng98/NTIRE2023_ESR)`
+
+Our model path is: `NTIRE2023_ESR/model_zoo/PRFDN_28.992.pth`
+
+Our network path is `NTIRE2023_ESR/models/rfdn_half`
+
+## 2 Test our code
+
+Execute the following script to set the ROOT variable in the shell to the project path(e.g. `ROOT=/home/seu/NTIRE2023_ESR`) and create the directory `results` to save the results.
+
+```bash
+ROOT=PATH_TO_OUR_PROJECT
+rm -rf "$ROOT/results"
+mkdir -p "$ROOT/results"
+```
+
+You can select the GPU by setting CUDA_VISIBLE_DEVICES=[GPU_id](e.g `CUDA_VISIBLE_DEVICES=0`). 
+
+Then you can execute our test code as follow:
+
+```bash
+python test_demo.py \
+  --data_dir PATH_TO_DATASET \
+  --save_dir "$ROOT/results" \
+  --model_id 13
+```
+
+The directory structure of the dataset of **PATH_TO_DATASET** is the same as that of the official repository.  Our model id is **13**.
+
+The results will be stored in **ROOT/results.json** and **ROOT/results.txt.**
+
+To check the results you can execute the following script:
+
+```bash
+printf "%20s %12s %17s %14s %5s\n" model_name valid_memory valid_ave_runtime valid_ave_psnr flops
+for line in $(cat results.json | jq -r 'to_entries|.[]|[.key,.value.valid_memory,.value.valid_ave_runtime,.value.valid_ave_psnr,.value.flops|tostring] | join(",")'); do
+  printf "%20s %12f %17f %14f %5f\n" $(echo $line | sed 's/,/ /g')
+done
+```
+
+The results then will be displayed.
+
+
+
+——————————————————————————————————————————————————————————————————————————
+
+
+
 # [NTIRE 2023 Challenge on Efficient Super-Resolution](https://cvlai.net/ntire/2023/) @ [CVPR 2023](https://cvpr2023.thecvf.com/)
 
 ## How to test the baseline model?
