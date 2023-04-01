@@ -2,7 +2,7 @@
 
 ## 1 Clone our repo
 
-`git clone [https://github.com/yindaheng98/NTIRE2023_ESR](https://github.com/yindaheng98/NTIRE2023_ESR)`
+`git clone https://github.com/yindaheng98/NTIRE2023_ESR`
 
 Our model path is: `NTIRE2023_ESR/model_zoo/PRFDN_28.992.pth`
 
